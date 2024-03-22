@@ -1,0 +1,25 @@
+
+//// 編號：CANDY-002
+// 程式語言：JavaScript
+// 題目：請寫一小段程式，印出連續陣列裡缺少的字元
+
+
+//我的作法
+
+const chars1 = ["a", "b", "c", "d", "f", "g"];
+const chars2 = ["O", "Q", "R", "S"];
+
+function missingChar(chars) {
+
+  const firstNumber = chars[0].charCodeAt(0);  //定義一個新的變數，並使用字串charCodeAt印出陣別中第一個字幕對應的Unicode
+
+  for( let i = 0; i <= chars.length - 1; i++){   //使用for迴圈並加入判斷，如果索引值印出的數字不等於firstNumber加上索引值，就在迴圈中使用//返回新定義的Act(Act：使用fromCharCode反求判斷的數字)
+    if( chars[i].charCodeAt(0) !== firstNumber + i ) { 
+      let Act = String.fromCharCode( chars[i].charCodeAt(0) - 1 );
+      return Act;
+    }
+  }
+}
+
+console.log(missingChar(chars1)); // 印出 e
+console.log(missingChar(chars2)); // 印出 P
