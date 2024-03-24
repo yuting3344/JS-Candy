@@ -1,0 +1,27 @@
+// 編號：CANDY-004
+// 程式語言：JavaScript
+// 題目：完成函數的內容，把傳進去的秒數變成平常人類看的懂的時間格式
+
+function humanReadableTimer(seconds) {
+
+        const hours = parseInt(seconds / 3600);  
+        //將數字除以一小時3600秒之後，用parseInt取到整數
+        const minutes = parseInt((seconds % 3600) / 60);   //秒數對3600取餘數，再將於數除以60，得到分鐘；由於剩下的餘數進行除法後可能非整數，仍要使用parseInt來取整數
+        const funSecond = seconds % 60;                  //將秒數對60取餘數，剩下的數值為秒數
+        const hourString = `${hours}`.padStart(2, '0');
+        const minuteString = `${minutes}`.padStart(2, '0');   //將求取的數字包成字串後，使用padStart字串填充的方式，從前方填充0，字串長度最多2
+        const secString = `${funSecond}`.padStart(2, '0');
+
+        return  hourString+ ':' +  minuteString + ':' + secString;    // 返回結果
+}
+
+console.log(humanReadableTimer(0)); // 印出 00:00:00
+console.log(humanReadableTimer(59)); // 印出 00:00:59
+console.log(humanReadableTimer(60)); // 印出 00:01:00
+console.log(humanReadableTimer(90)); // 印出 00:01:30
+console.log(humanReadableTimer(3599)); // 印出 00:59:59
+console.log(humanReadableTimer(3600)); // 印出 01:00:00
+console.log(humanReadableTimer(45296)); // 印出 12:34:56
+console.log(humanReadableTimer(86399)); // 印出 23:59:59
+console.log(humanReadableTimer(86400)); // 印出 24:00:00
+console.log(humanReadableTimer(359999)); // 印出 99:59:59
