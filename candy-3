@@ -1,0 +1,46 @@
+```js
+// // 編號：CANDY-003
+// // 程式語言：JavaScript
+// // 題目：完成函數的內容，把陣列裡的 0 都移到最後面
+
+//filter解法
+
+
+let list = [false, 1, 0, -1, 2, 0, 1, 3, "a"];
+
+function moveZerosToEnd(arr) {
+
+    const zeroes = arr.filter(function(x){ //宣告Firstof為參數arr進行過濾之後，得到只有0的陣列[0,0]
+        return x === 0;
+    })
+    const nonZeroes = arr.filter(function(item){   //再使用過濾器得到沒有[0,0]的陣列
+        return item !== 0;
+    })
+    return nonZeroes.concat(zeroes); //兩者相結合
+
+}
+let result = moveZerosToEnd(list);
+console.log(result); 
+
+//forEach解法
+
+let list = [false, 1, 0, -1, 2, 0, 1, 3, "a"];
+
+function moveZerosToEnd(arr) {
+
+    const newArray = [];
+
+    const FirstNum = arr.filter(function(x){
+        return x === 0;
+    })
+    arr.forEach(function(x){
+        if( x !== 0 ) {
+        newArray.push(x);
+    }
+    });
+    return arr.concat(FirstNum);
+    
+}
+let result = moveZerosToEnd(list);
+console.log(result); 
+```
