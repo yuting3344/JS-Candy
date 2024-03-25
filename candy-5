@@ -1,0 +1,19 @@
+// 編號：CANDY-005
+// 程式語言：JavaScript
+// 題目：完成函數的內容，把(傳進去的數字的每個位數平方)之後組合在一起
+
+function squareDigits(num) {
+
+    const array = num.toString().split('');      //使用toString()將數字轉成字串後，再使用split('')來把字串打散成陣列！
+
+    const squareArray = array.map((n) => n * n); //使用map函數來將陣列平方
+
+    const connectNumbers = squareArray.join('');     //使用join()來把陣列中的元素組合起來成新字串
+    
+    return parseInt(connectNumbers);                 //返回使用parseInt將求得字串轉換成數字的結果
+
+}
+
+console.log(squareDigits(3212)); // 印出 9414
+console.log(squareDigits(2112)); // 印出 4114
+console.log(squareDigits(387)); // 印出 96449
