@@ -1,0 +1,40 @@
+// 編號：CANDY-008
+// 程式語言：JavaScript
+// 題目：傳入一字串，計算得分最高的字
+//      英文字母 a 得 1 分、b 得 2 分、c 得 3 分，以此類推。
+//      所有傳入的字都是小寫。
+
+function highestScoreWord(input) {
+  let customLetterToNumberMap = {};
+
+  for (let letter in customLetterToNumberMap) {
+    customLetterToNumberMap[letter] = letter.charCodeAt(0) - 96;
+  }
+  const sentenceTowords = input.split(" "); //將字串拆分成單詞以便比大小
+
+  let maxScore = 0;
+  let highestScoreWord = "";
+
+  sentenceTowords.forEach(function (word) {
+    //使用forEach搭配迴圈來累加單詞中每個字母的值
+    let wordScore = 0; //先預設wordScore為0
+
+    for (i = 0; i < word.length; i++) {
+      //for迴圈起始等於0;結束於整個單詞長度;範圍內累加
+      let letter = word[i].toLowerCase(); //如果letter在'a'到'z'的範圍內，則wordScore就會在迴圈內累加分數
+      if (letter >= "a" && letter <= "z") {
+        //
+        wordScore += customLetterToNumberMap[letter];
+      }
+    }
+    if (wordScore > maxScore) {
+      //如果當下的分數大於最大值，則更新最大值
+      maxScore = wordScore;
+      highestScoreWord = word; //最大值對應的英文單詞也更新
+    }
+  });
+  return highestScoreWord;
+}
+console.log(highestScoreWord("lorem ipsum dolor sit amet")); // 印出 ipsum
+console.log(highestScoreWord("heyn i need a rubygem up to build this")); // 印出 rubygem
+console.log(highestScoreWord("in time machine there are some bugs")); // 印出 there
