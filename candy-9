@@ -1,0 +1,9 @@
+// 編號：CANDY-009
+
+function removeAnchor(url) {
+  return url.replace(/#.*$/, ""); //  /#*$/是一個正規表示式，用來表示＃後面的任意字元＄代表結束位置！
+}
+
+console.log(removeAnchor("5xcampus.com")); // 印出 5xcampus.com
+console.log(removeAnchor("5xcampus.com/#about")); // 印出 5xcampus.com/
+console.log(removeAnchor("5xcampus.com/courses/?page=1#about")); // 印出 5xcampus.com/courses/?page=1
