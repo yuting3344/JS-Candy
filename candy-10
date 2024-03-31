@@ -1,0 +1,33 @@
+// 編號：CANDY-010
+// 程式語言：JavaScript
+// 題目：把數字以 (10 進位)展開式呈現，數字均為大於 0 的正整數
+// 範例：9527 變成 "1000 x 9 + 100 x 5 + 10 x 2 + 7"
+
+function expandedForm(num) {
+  const newArray = num.toString().split(""); //將數字轉成字串後分開成陣列
+
+  if (newArray.length === 1) {
+    //符合條件：陣列長度等於1，就優先返回
+    return parseInt(newArray);
+  }
+  let count = newArray.length - 1;
+
+  const final = newArray //使用map來搜集符合條件者
+    .map((x) => {
+      const exponent = Math.pow(10, count--); //運用兩個條件：第一個是數字不等於0且陣列長度減1 >= 0 ，符合就搜集10進位乘上當前數字；若是不符合前面，只有符合x不等於零，則僅印出個位數
+      if (x !== "0" && count >= 0) {
+        return `${exponent} x ${x}`;
+      } else if (x !== "0") {
+        return `${x}`;
+      }
+      return null;
+    })
+    .filter((item) => item !== null); //過濾不是null的數
+
+  return final.join(" + "); //用join將陣列重組出新字串
+}
+console.log(expandedForm(8)); // 印出 8
+console.log(expandedForm(25)); // 印出 10 x 2 + 5
+console.log(expandedForm(148)); // 印出 100 x 1 + 10 x 4 + 8
+console.log(expandedForm(1450)); // 印出 1000 x 1 + 100 x 4 + 10 x 5
+console.log(expandedForm(60308)); // 印出 10000 x 6 + 100 x 3 + 8
