@@ -1,0 +1,25 @@
+// 編號：CANDY-013
+// 程式語言：JavaScript
+// 題目：根據台灣財政部所提供的公司統編驗證規則，計算統一編號是否正確
+// https://www.fia.gov.tw/singlehtml/3?cntId=c4d9cff38c8642ef8872774ee9987283
+
+function isValidVatNumber(vat) {
+  const splitArray = vat.split("").map((str) => parseInt(str)); //將字串拆成新陣列
+  const logicArray = [1, 2, 1, 2, 1, 2, 4, 1]; //有一組固定的邏輯乘數陣列[1, 2, 1, 2, 1, 2, 4, 1]
+  const multipleMapping = (value, index) => value * logicArray[index]; //將兩個陣列相乘並搜集
+  const multipliteArray = splitArray.map(multipleMapping);
+  const result = multipliteArray //將新陣列1.變成字串2.再打散3.相加，如果整除5則返回true，反之false
+    .join("")
+    .split("")
+    .map((str) => parseInt(str))
+    .reduce((a, b) => a + b, 0);
+  if (result % 5 === 0) {
+    return true;
+  }
+  return false;
+}
+
+console.log(isValidVatNumber("10458575")); // true
+console.log(isValidVatNumber("88117125")); // true
+console.log(isValidVatNumber("53212539")); // true
+console.log(isValidVatNumber("88117126")); // false
