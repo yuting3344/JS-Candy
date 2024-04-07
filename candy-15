@@ -1,0 +1,27 @@
+
+
+// 編號：CANDY-015
+// 程式語言：JavaScript
+// 題目：把原本的字串拆解成 2 個字元一組，若不足 2 個字則補上底線
+// 範例：
+//      "abcdef" -> ['ab', 'cd', 'ef']
+//      "abcdefg" -> ['ab', 'cd', 'ef', 'g_']
+
+function splitString(str) {
+  const array = str.split(""); //字串打散
+  let newArray = [];
+  for (let i = 0; i < array.length; i += 2) {
+    //在迴圈中，當每次偶數索引值＋1小於陣列長度時（表示偶數個元素），組合成字串放入空陣列，如果等於陣列長度（奇數個），加上"_"並放入陣列
+    if (i + 1 < array.length) {
+      newArray.push(array[i] + array[i + 1]);
+    } else if (i + 1 === array.length) {
+      newArray.push(array[i] + "_");
+    }
+  }
+  return newArray;
+}
+
+console.log(splitString("abcdef")); // ["ab", "cd", "ef"]
+console.log(splitString("abcdefg")); // ["ab", "cd", "ef", "g_"]
+console.log(splitString("")); // []
+
