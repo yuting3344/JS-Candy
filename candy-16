@@ -1,0 +1,22 @@
+
+
+// 編號：CANDY-016
+// 程式語言：JavaScript
+// 題目：把原本 snake_case 的字轉換成 camelCase 格式
+// 範例："hello_world" -> "helloWorld"
+
+function toCamelCase(str) {
+  const splitArray = str.split("_"); //在有"_"的地方，切割字串
+  const toUpperStr = //將陣列第一個跟後面分開處理
+    splitArray[0] +
+    splitArray //後面的陣列用map來搜集陣列中的單詞：1.首字字母大寫2.首字後面的字母，兩者的結合字串！
+      .splice(1)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join("");
+  return toUpperStr;
+}
+
+console.log(toCamelCase("book")); // book
+console.log(toCamelCase("book_store")); // bookStore
+console.log(toCamelCase("get_good_score")); // getGoodScore
+
