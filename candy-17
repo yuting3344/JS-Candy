@@ -1,0 +1,49 @@
+
+
+// 編號：CANDY-017
+// 程式語言：JavaScript
+// 題目：計算數字的 2 進位裡有幾個 1
+// 範例：5 -> 101 -> 2 個 1
+
+//字串加filter作法;
+function countBits(num) {
+  //先判斷參數是否為0
+  if (num === 0) {
+    return "0";
+  }
+  let newBinary = ""; //定義字串並且用while來將符合流程1.對2取餘數2.加在空字串開頭3.更新目前的商數
+  while (num > 0) {
+    const remainNum = num % 2;
+    newBinary = remainNum + newBinary;
+    num = Math.floor(num / 2);
+  }
+
+  return newBinary //打散字串，轉數字，過濾符合1的陣列並計算長度
+    .split("")
+    .map(Number)
+    .filter((items) => items === 1).length;
+}
+console.log(countBits(1234)); // 5
+console.log(countBits(1450)); // 6
+console.log(countBits(9527)); // 8
+
+//陣列加filter作法
+function countBits(num) {
+  if (num === 0) {
+    return "0";
+  }
+  let newBinary = [];
+  while (num > 0) {
+    const remainNum = num % 2;
+    newBinary.unshift(remainNum);
+    num = Math.floor(num / 2);
+  }
+
+  return newBinary.filter((items) => items === 1).length;
+}
+
+console.log(countBits(1234)); // 5
+console.log(countBits(1450)); // 6
+console.log(countBits(9527)); // 8
+
+
